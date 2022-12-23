@@ -15,4 +15,4 @@ def file_upload(request):
         my_file=request.FILES.get('file')
         Image.objects.create(image=my_file)
         return HttpResponse('')
-    return JsonResponse({'post':'fasle'})
+    return JsonResponse({'post':'false'})
