@@ -31,12 +31,13 @@
     Dropzone.autoDiscover = false;
   
     var myDropzone = new Dropzone(".dropzone", { 
-       acceptedFiles: ".jpeg,.jpg,.png,.gif, .docx, .pptx, .xlsl, .doc, ",
+       acceptedFiles: ".jpeg, .jpg, .png, .gif, .pptx, .ppt, .doc,.docx, .xls, .xlsx,.csv, .tsv, .ppt,.pptx,.pages,.odt,",
        addRemoveLinks: true,
        parallelUploads: 20,
        maxFiles: 20,
        uploadMultiple: true,
        maxFilesize: 256*4*2,
+       dictRemoveFile: "Remove",
    
     });
       
