@@ -31,9 +31,11 @@
     Dropzone.autoDiscover = false;
   
     var myDropzone = new Dropzone(".dropzone", { 
-       maxFilesize: 10,
        acceptedFiles: ".jpeg,.jpg,.png,.gif, .docx, .pptx",
        addRemoveLinks: true,
+       parallelUploads: 12,
+       uploadMultiple: true,
+       maxFilesize: 256*4*2,
    
     });
       
