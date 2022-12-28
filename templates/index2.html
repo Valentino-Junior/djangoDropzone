@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>
+  <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+  <link rel="stylesheet" href="{% static 'style.css'%}">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css"> -->
+
+</head>
+<body>
+  
+
+  <form class="dropzone" id="myDropzone" method="post" action="upload/" enctype="multipart/form-data">
+    <!-- <form action="/upload/" enctype="multipart/form-data" class="dropzone dz" id="image-upload"> -->
+      
+    {% csrf_token %}
+    <div class="fallback">
+        <input name="file" type="file" multiple />
+    </div>  
+</form>
+
+<button class="upload-control btn-success btn" type="submit" id='submit-all' onclick="document.getElementById('myDropzone').submit()">
+    <i class="glyphicon glyphicon-upload"></i>
+    <span>submit</span>
+</button>
+
+<style>
+    .upload-control {
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+</style>
+<!-- <script src="{% static 'js/dropzone.js' %}"></script> -->
+<!-- <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    Dropzone.autoDiscover = false
+    $(document).ready(function() {
+        Dropzone.options.myDropzone = {
+          paramName: "file", // The name that will be used to transfer the file
+          uploadMultiple: true,
+          maxFiles: 20,
+          parallelUploads: 20,
+          maxFilesize: 200,
+          addRemoveLinks: true,
+          dictRemoveFile: "Remove file",
+          dictFileTooBig: "Image is larger than 200MB",
+          timeout: 1800000,
+          autoProcessQueue: false,
+
+            init : function() {
+                var submitButton = document.querySelector("#submit-all")
+                myDropzone = this;
+
+                submitButton.addEventListener("click", function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    myDropzone.processQueue();
+                });
+
+                this.on("sendingmultiple", function() {
+                    // Figure out what I want here or if I want at all
+                });
+
+                this.on("successmultiple", function(files, response) {
+                    window.location.reload();
+                });
+
+                this.on("errormultiple", function(files, response) {
+                    // Figure out what I want here or if I want at all
+                });
+
+                }
+                // Do I need this?
+                //myDropzone.on('success', myDropzone.processQueue.bind(myDropzone));
+        };
+});    
+</script>
+
+</body>
+</html>
