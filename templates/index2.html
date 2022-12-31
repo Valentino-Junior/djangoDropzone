@@ -10,20 +10,18 @@
   <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
   <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 
+
+<style>
+    .upload-control {
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+</style>
+
 </head>
 <body>
-  
-  <form action="upload/" enctype="multipart/form-data" class="dropzone dz" id="image-upload">
-        {% csrf_token %}
-        <input type="hidden" name="request" value="add">
-        <div>
-          <!-- <h3>Upload Multiple Image By Click On Box</h3> -->
-        </div>
-      </form>
 
-      
   <form class="dropzone" id="myDropzone" method="post" action="upload/" enctype="multipart/form-data">
-    <!-- <form action="/upload/" enctype="multipart/form-data" class="dropzone dz" id="image-upload"> -->
       
     {% csrf_token %}
     <div class="fallback">
@@ -36,16 +34,6 @@
     <span>submit</span>
 </button>
 
-<style>
-    .upload-control {
-        margin-top: 10px;
-        margin-bottom: 0px;
-    }
-</style>
-<!-- <script src="{% static 'js/dropzone.js' %}"></script> -->
-<!-- <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script> -->
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <script type="text/javascript">
     Dropzone.autoDiscover = false
