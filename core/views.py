@@ -8,7 +8,7 @@ def home(request):
     context={
         'images':images
     }
-    return render(request, 'index2.html', context)
+    return render(request, 'index.html', context)
 
 def file_upload(request):
     if request.method == 'POST':
