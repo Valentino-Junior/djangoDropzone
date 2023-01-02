@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import Image
 # Create your views here.
@@ -8,11 +8,11 @@ def home(request):
     context={
         'images':images
     }
-    return render(request, 'index.html', context)
+    return render(request, 'index2.html', context)
 
 def file_upload(request):
     if request.method == 'POST':
         my_file=request.FILES.get('file')
         Image.objects.create(image=my_file)
-        return HttpResponse('')
+        return redirect('/')
     return JsonResponse({'post':'false'})
