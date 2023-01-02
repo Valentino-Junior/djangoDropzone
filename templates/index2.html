@@ -1,83 +1,96 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-  <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
-  <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/basic.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'dropzone-5.7.0/dist/dropzone.css' %}">
 
 
-<style>
-    .upload-control {
-        margin-top: 10px;
-        margin-bottom: 0px;
-    }
-</style>
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
+
+    <style>
+        .upload-control {
+            margin-top: 10px;
+            margin-bottom: 0px;
+        }
+    </style>
 
 </head>
+
 <body>
+    
 
-  <form class="dropzone" id="myDropzone" method="post" action="upload/" enctype="multipart/form-data">
-      
-    {% csrf_token %}
-    <div class="fallback">
-        <input name="file" type="file" multiple />
-    </div>  
-</form>
+    <form action="upload/" class="dropzone" id="myDropzone" method="post" enctype="multipart/form-data">
 
-<button class="upload-control btn-success btn" type="submit" id='submit-all' onclick="document.getElementById('myDropzone').submit()">
-    <i class="glyphicon glyphicon-upload"></i>
-    <span>submit</span>
-</button>
+        {% csrf_token %}
+
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+        </div>
+    </form>
+
+    <button class="upload-control btn-success btn" type="submit" id='submit-all'
+        onclick="document.getElementById('myDropzone').submit()">
+        <i class="glyphicon glyphicon-upload"></i>
+        <span>submit</span>
+    </button>
 
 
-<script type="text/javascript">
-    Dropzone.autoDiscover = false
-    $(document).ready(function() {
-        Dropzone.options.myDropzone = {
-          paramName: "file", // The name that will be used to transfer the file
-          uploadMultiple: true,
-          maxFiles: 20,
-          parallelUploads: 20,
-          maxFilesize: 200,
-          addRemoveLinks: true,
-          dictRemoveFile: "Remove file",
-          dictFileTooBig: "Image is larger than 200MB",
-          timeout: 1800000,
-          autoProcessQueue: false,
+    <script src="{% static 'dropzone-5.7.0/dist/dropzone.js' %}"></script>
 
-            init : function() {
-                var submitButton = document.querySelector("#submit-all")
-                myDropzone = this;
+    <script type="text/javascript">
+        Dropzone.autoDiscover = false
+        $(document).ready(function () {
+            Dropzone.options.myDropzone = {
+                paramName: "file", // The name that will be used to transfer the file
+                uploadMultiple: true,
+                maxFiles: 20,
+                parallelUploads: 20,
+                maxFilesize: 200,
+                addRemoveLinks: true,
+                dictRemoveFile: "Remove file",
+                dictFileTooBig: "Image is larger than 200MB",
+                timeout: 1800000,
+                autoProcessQueue: false,
 
-                submitButton.addEventListener("click", function(e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    myDropzone.processQueue();
-                });
+                init: function () {
+                    var submitButton = document.querySelector("#submit-all")
+                    myDropzone = this;
 
-                this.on("sendingmultiple", function() {
-                    // Figure out what I want here or if I want at all
-                });
+                    submitButton.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        myDropzone.processQueue();
+                    });
 
-                this.on("successmultiple", function(files, response) {
-                    window.location.reload();
-                });
+                    this.on("sendingmultiple", function () {
+                        // Figure out what I want here or if I want at all
+                    });
 
-                this.on("errormultiple", function(files, response) {
-                    // Figure out what I want here or if I want at all
-                });
+                    this.on("successmultiple", function (files, response) {
+                        window.location.reload();
+                    });
+
+                    this.on("errormultiple", function (files, response) {
+                        // Figure out what I want here or if I want at all
+                    });
 
                 }
                 // Do I need this?
                 //myDropzone.on('success', myDropzone.processQueue.bind(myDropzone));
-        };
-});    
-</script>
+            };
+        });
+    </script>
 
 </body>
+
 </html>
