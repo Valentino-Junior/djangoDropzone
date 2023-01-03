@@ -13,6 +13,6 @@ def home(request):
 def file_upload(request):
     if request.method == 'POST':
         my_file=request.FILES.get('file')
-        ImageFile.objects.create(image=my_file)
+        Image.objects.create(image=my_file)
         return redirect('/')
     return JsonResponse({'post':'false'})
