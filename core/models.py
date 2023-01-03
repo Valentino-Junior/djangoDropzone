@@ -4,7 +4,7 @@ from django.db import models
 
 class Image(models.Model):
     image=models.ImageField(upload_to='images/')
-    date = models.DateTimeField( auto_now_add=True)
+    # date = models.DateTimeField( auto_now_add=True)
 
     class Meta:
         ordering=['-date']
